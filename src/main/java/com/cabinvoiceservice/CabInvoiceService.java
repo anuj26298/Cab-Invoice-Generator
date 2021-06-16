@@ -11,11 +11,11 @@ public class CabInvoiceService {
         return  fare;
     }
 
-    public double calculateFare(Ride[] rides){
+    public InvoiceSummary calculateFare(Ride[] rides){
         double totalFare = 0;
         for (Ride ride : rides){
             totalFare += calculateFare(ride.getDistance(), ride.getTime());
         }
-        return totalFare;
+        return new InvoiceSummary(rides.length, totalFare);
     }
 }

@@ -20,11 +20,12 @@ public class CabInvoiceServiceTest {
     }
 
     @Test
-    public void givenMultipleRides_ReturnTotalFare() {
+    public void givenMultipleRides_ReturnInvoiceSummary() {
         CabInvoiceService cabInvoiceService = new CabInvoiceService();
         Ride[] rides = {new Ride(10,20),
         new Ride(0.2,3)};
-        double fare = cabInvoiceService.calculateFare(rides);
-        Assert.assertEquals(125, fare,0);
+        InvoiceSummary actualInvoiceSummary = cabInvoiceService.calculateFare(rides);
+        InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2,125);
+        Assert.assertEquals(expectedInvoiceSummary, actualInvoiceSummary);
     }
 }
