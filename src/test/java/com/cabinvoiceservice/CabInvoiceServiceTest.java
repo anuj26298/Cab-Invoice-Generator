@@ -28,4 +28,20 @@ public class CabInvoiceServiceTest {
         InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2,125);
         Assert.assertEquals(expectedInvoiceSummary, actualInvoiceSummary);
     }
+
+    @Test
+    public void givenUserId_ReturnUserRideInvoiceSummary() {
+        CabInvoiceService cabInvoiceService = new CabInvoiceService();
+        Ride[] user1Ride = {new Ride(10,20),
+        new Ride(.2,3)};
+        Ride[] user2Ride = {new Ride(10,15),
+        new Ride(.2,2),
+        new Ride(5, 10)};
+        cabInvoiceService.addRideInRepo("1",user1Ride);
+        cabInvoiceService.addRideInRepo("2",user2Ride);
+
+        InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(3,180);
+        InvoiceSummary actualInvoiceSummary = cabInvoiceService.getInvoiceSummary("2");
+        Assert.assertEquals(expectedInvoiceSummary, actualInvoiceSummary);
+    }
 }
